@@ -1,4 +1,60 @@
 <html>
   <head> <p>hi</p></head>
-  <body><p>this app is in developement!</p></body>
+  <body> <div class="esfera-contenedor">
+  <div class="esfera-anillo"></div>
+  <div class="esfera-anillo"></div>
+  <div class="esfera-anillo"></div>
+  <div class="esfera-anillo"></div>
+  <div class="esfera-anillo"></div>
+  <div class="esfera-anillo"></div>
+</div>
+ <style>.esfera-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  /* Permite que los elementos 3D dentro de este contenedor se posicionen correctamente */
+  transform-style: preserve-3d;
+}
+
+.esfera-anillo {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  /* Propiedad clave para la transformación */
+  transform-style: preserve-3d;
+}
+
+/* Rotación de cada anillo */
+.esfera-anillo:nth-child(1) {
+  transform: rotateX(90deg);
+}
+
+.esfera-anillo:nth-child(2) {
+  transform: rotateY(90deg);
+}
+
+/* Y así sucesivamente, rotando cada anillo en diferentes ejes para crear la ilusión de la esfera */
+ </style>
+
+  <script>const esferaContenedor = document.querySelector('.esfera-contenedor');
+let rotationY = 0;
+let rotationX = 0;
+let isRotating = false;
+
+// Rotación automática de la esfera
+function animarEsfera() {
+  rotationY += 0.5;
+  rotationX += 0.2;
+  esferaContenedor.style.transform = `rotateY(${rotationY}deg) rotateX(${rotationX}deg)`;
+  requestAnimationFrame(animarEsfera);
+}
+
+// Iniciar la animación
+animarEsfera();
+  </script>
+  </body>
 </html>
